@@ -39,7 +39,7 @@ namespace Nagisa.Graphics
         private IntPtr bitmapData;
         private int bitmapBytes;
 
-        private bool disposed = false;
+        private bool isDisposed = false;
         #endregion
 
         #region -- Public Properties --
@@ -50,7 +50,7 @@ namespace Nagisa.Graphics
         {
             get
             {
-                if (this.disposed)
+                if (this.isDisposed)
                     throw new ObjectDisposedException(this.GetType().FullName);
 
                 return this.bitmap;
@@ -64,7 +64,7 @@ namespace Nagisa.Graphics
         {
             get
             {
-                if (this.disposed)
+                if (this.isDisposed)
                     throw new ObjectDisposedException(this.GetType().FullName);
 
                 return this.graphics;
@@ -78,7 +78,7 @@ namespace Nagisa.Graphics
         {
             get
             {
-                if (this.disposed)
+                if (this.isDisposed)
                     throw new ObjectDisposedException(this.GetType().FullName);
 
                 return this.bitmapData;
@@ -133,7 +133,7 @@ namespace Nagisa.Graphics
         /// </summary>
         public void Flush()
         {
-            if (this.disposed)
+            if (this.isDisposed)
                 throw new ObjectDisposedException(this.GetType().FullName);
 
             this.graphics.Flush();
@@ -171,7 +171,7 @@ namespace Nagisa.Graphics
         /// <param name="disposing">マネージリソースとアンマネージリソースの両方を解放する場合は true。アンマネージリソースだけを解放する場合は false。</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this.isDisposed)
             {
                 if (disposing)
                 {
@@ -189,7 +189,7 @@ namespace Nagisa.Graphics
                 this.graphics = null;
                 this.bitmap = null;
 
-                this.disposed = true;
+                this.isDisposed = true;
             }
         }
         #endregion
