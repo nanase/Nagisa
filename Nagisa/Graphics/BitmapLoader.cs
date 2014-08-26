@@ -31,7 +31,7 @@ namespace Nagisa.Graphics
     /// <summary>
     /// ビットマップデータを読み込み、内部データに簡易的にアクセスします。
     /// </summary>
-    public class BitmapLoader : IDisposable
+    public class BitmapLoader : IDisposer
     {
         #region -- Private Fields --
         private Bitmap bitmap;
@@ -83,6 +83,14 @@ namespace Nagisa.Graphics
 
                 return this.bitmapData;
             }
+        }
+
+        /// <summary>
+        /// オブジェクトが破棄されたかを表す真偽値を取得します。
+        /// </summary>
+        public bool IsDisposed
+        {
+            get { return this.isDisposed; }
         }
         #endregion
 
