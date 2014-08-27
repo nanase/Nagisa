@@ -41,6 +41,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics\BitmapController.cs" />
     <Compile Include="Graphics\BitmapLoader.cs" />
     <Compile Include="IDisposer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
