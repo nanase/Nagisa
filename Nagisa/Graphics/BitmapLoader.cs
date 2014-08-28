@@ -108,7 +108,16 @@ namespace Nagisa.Graphics
             if (baseBitmap == null)
                 throw new ArgumentNullException("baseBitmap");
 
-            this.Initalize(baseBitmap);
+            if (8L * baseBitmap.Width * baseBitmap.Height >= (long)int.MaxValue)
+                throw new ArgumentException("画像サイズが大きすぎます。");
+
+            this.bitmap = baseBitmap;
+            this.graphics = System.Drawing.Graphics.FromImage(baseBitmap);
+
+            this.bitmapBytes = 4 * baseBitmap.Width * baseBitmap.Height;
+            this.bitmapData = Marshal.AllocHGlobal(this.bitmapBytes);
+
+            this.Flush();
         }
 
         /// <summary>
@@ -198,22 +207,6 @@ namespace Nagisa.Graphics
 
                 this.isDisposed = true;
             }
-        }
-        #endregion
-
-        #region -- Private Methods --
-        private void Initalize(Bitmap bitmap)
-        {
-            this.bitmap = bitmap;
-            this.graphics = System.Drawing.Graphics.FromImage(bitmap);
-
-            if (8L * bitmap.Width * bitmap.Height >= (long)int.MaxValue)
-                throw new ArgumentException("画像サイズが大きすぎます。");
-
-            this.bitmapBytes = 4 * bitmap.Width * bitmap.Height;
-            this.bitmapData = Marshal.AllocHGlobal(this.bitmapBytes);
-
-            this.Flush();
         }
         #endregion
 
