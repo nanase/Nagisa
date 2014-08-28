@@ -115,30 +115,18 @@ namespace Nagisa.Graphics
         /// ストリームを読み取って BitmapLoader クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="stream">読み取り可能なストリーム。</param>
-        /// <exception cref="ArgumentNullException">ストリームオブジェクトが null です。</exception>
-        /// <exception cref="NotSupportedException">ストリームが読み取りに対応していません。</exception>
         public BitmapLoader(Stream stream)
+            : this(new Bitmap(stream))
         {
-            if (stream == null)
-                throw new ArgumentNullException("stream");
-
-            if (!stream.CanRead)
-                throw new NotSupportedException();
-
-            this.Initalize(new Bitmap(stream));
         }
 
         /// <summary>
         /// ファイルを読み取って BitmapLoader クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="filename">読み取られるファイル名。</param>
-        /// <exception cref="ArgumentNullException">ファイル名が無効です。</exception>
         public BitmapLoader(string filename)
+            : this(new Bitmap(filename))
         {
-            if (string.IsNullOrWhiteSpace(filename))
-                throw new ArgumentNullException("filename");
-
-            this.Initalize(new Bitmap(filename));
         }
         #endregion
 
