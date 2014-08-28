@@ -37,7 +37,7 @@ namespace Nagisa.Graphics
         private Bitmap bitmap;
         private System.Drawing.Graphics graphics;
         private IntPtr bitmapData;
-        private int bitmapBytes;
+        private readonly int bitmapBytes;
 
         private bool isDisposed = false;
         #endregion
