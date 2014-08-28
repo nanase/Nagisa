@@ -103,6 +103,7 @@ namespace Nagisa.Graphics
         /// </summary>
         /// <param name="baseBitmap">元となるビットマップオブジェクト。</param>
         /// <exception cref="ArgumentNullException">ビットマップオブジェクトが null です。</exception>
+        /// <exception cref="ArgumentException">ビットマップのサイズが大きすぎます。</exception>
         public BitmapLoader(Bitmap baseBitmap)
         {
             if (baseBitmap == null)
