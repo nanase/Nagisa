@@ -46,6 +46,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップの元となった Bitmap オブジェクトを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public Bitmap BaseBitmap
         {
             get
@@ -60,6 +61,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップを操作する Graphics オブジェクトを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public System.Drawing.Graphics Graphics
         {
             get
@@ -74,6 +76,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップデータの先頭ポインタを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public IntPtr Scan0
         {
             get
@@ -99,6 +102,7 @@ namespace Nagisa.Graphics
         /// ビットマップを使用して BitmapLoader クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="baseBitmap">元となるビットマップオブジェクト。</param>
+        /// <exception cref="ArgumentNullException">ビットマップオブジェクトが null です。</exception>
         public BitmapLoader(Bitmap baseBitmap)
         {
             if (baseBitmap == null)
@@ -111,6 +115,8 @@ namespace Nagisa.Graphics
         /// ストリームを読み取って BitmapLoader クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="stream">読み取り可能なストリーム。</param>
+        /// <exception cref="ArgumentNullException">ストリームオブジェクトが null です。</exception>
+        /// <exception cref="NotSupportedException">ストリームが読み取りに対応していません。</exception>
         public BitmapLoader(Stream stream)
         {
             if (stream == null)
@@ -126,6 +132,7 @@ namespace Nagisa.Graphics
         /// ファイルを読み取って BitmapLoader クラスのインスタンスを初期化します。
         /// </summary>
         /// <param name="filename">読み取られるファイル名。</param>
+        /// <exception cref="ArgumentNullException">ファイル名が無効です。</exception>
         public BitmapLoader(string filename)
         {
             if (string.IsNullOrWhiteSpace(filename))
@@ -139,6 +146,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップの変更を適用し、ヒープにコピーします。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public void Flush()
         {
             if (this.isDisposed)
