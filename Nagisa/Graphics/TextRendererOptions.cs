@@ -178,7 +178,11 @@ namespace Nagisa.Graphics
         /// <param name="fontSize">フォントのサイズ。単位はピクセルです。</param>
         /// <param name="lineHeight">行の高さ。</param>
         /// <param name="style">フォントのスタイル。</param>
-        public TextRendererOptions(FontFamily fontFamily, int fontSize, int lineHeight, FontStyle style = FontStyle.Regular)
+        public TextRendererOptions(
+            FontFamily fontFamily,
+            int fontSize,
+            int lineHeight,
+            FontStyle style = FontStyle.Regular)
         {
             if (fontFamily == null)
                 throw new ArgumentNullException("fontFamily");
