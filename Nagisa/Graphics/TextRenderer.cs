@@ -85,7 +85,8 @@ namespace Nagisa.Graphics
         }
 
         /// <summary>
-        /// テキストオプションと描画先のビットマップを指定して新しい TextRenderer クラスの新しいインスタンスを初期化します。
+        /// テキストオプションと描画先のビットマップを指定して
+        /// 新しい TextRenderer クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="options">使用されるテキストオプション。</param>
         /// <param name="bitmapLoader">描画先のビットマップ。</param>
@@ -166,10 +167,13 @@ namespace Nagisa.Graphics
         /// <param name="y">描画される原点の Y 座標。</param>
         public void DrawString(string text, int brushIndex, float x, float y)
         {
-            this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias : TextRenderingHint.SingleBitPerPixel;
+            this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias :
+                                                                                   TextRenderingHint.SingleBitPerPixel;
 
             int i = 0;
-            bool shadow = (this.options.DrawShadow && this.options.ShadowIndex > 0 && this.options.ShadowIndex < this.options.Brushes.Length);
+            bool shadow = (this.options.DrawShadow &&
+                           this.options.ShadowIndex > 0 &&
+                           this.options.ShadowIndex < this.options.Brushes.Length);
             bool fore = (brushIndex >= 0 && brushIndex < this.options.Brushes.Length);
 
             foreach (var line in text.Split('\n'))
@@ -177,10 +181,20 @@ namespace Nagisa.Graphics
                 float y_offset = i * (this.options.LineHeight + 1.0f) + y;
 
                 if (shadow)
-                    this.loader.Graphics.DrawString(line, this.options.Font, this.options.Brushes[this.options.ShadowIndex], TextRenderer.shadowOffset.X + x, TextRenderer.shadowOffset.Y + y_offset, this.options.Format);
+                    this.loader.Graphics.DrawString(line,
+                                                    this.options.Font,
+                                                    this.options.Brushes[this.options.ShadowIndex],
+                                                    TextRenderer.shadowOffset.X + x,
+                                                    TextRenderer.shadowOffset.Y + y_offset,
+                                                    this.options.Format);
 
                 if (fore)
-                    this.loader.Graphics.DrawString(line, this.options.Font, this.options.Brushes[brushIndex], TextRenderer.foreOffset.X + x, TextRenderer.foreOffset.Y + y_offset, this.options.Format);
+                    this.loader.Graphics.DrawString(line,
+                                                    this.options.Font,
+                                                    this.options.Brushes[brushIndex],
+                                                    TextRenderer.foreOffset.X + x,
+                                                    TextRenderer.foreOffset.Y + y_offset,
+                                                    this.options.Format);
 
                 i++;
             }
@@ -256,13 +270,26 @@ namespace Nagisa.Graphics
         /// <returns>描画された矩形領域のサイズを返します。</returns>
         public SizeF DrawChars(string text, int brushIndex, float x, float y)
         {
-            this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias : TextRenderingHint.SingleBitPerPixel;
+            this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias :
+                                                                                   TextRenderingHint.SingleBitPerPixel;
 
-            if (this.options.DrawShadow && this.options.ShadowIndex > 0 && this.options.ShadowIndex < this.options.Brushes.Length)
-                this.loader.Graphics.DrawString(text, this.options.Font, this.options.Brushes[this.options.ShadowIndex], TextRenderer.shadowOffset.X + x, TextRenderer.shadowOffset.Y + y, this.options.Format);
+            if (this.options.DrawShadow &&
+                this.options.ShadowIndex > 0 &&
+                this.options.ShadowIndex < this.options.Brushes.Length)
+                this.loader.Graphics.DrawString(text,
+                                                this.options.Font,
+                                                this.options.Brushes[this.options.ShadowIndex],
+                                                TextRenderer.shadowOffset.X + x,
+                                                TextRenderer.shadowOffset.Y + y,
+                                                this.options.Format);
 
             if (brushIndex >= 0 && brushIndex < this.options.Brushes.Length)
-                this.loader.Graphics.DrawString(text, this.options.Font, this.options.Brushes[brushIndex], TextRenderer.foreOffset.X + x, TextRenderer.foreOffset.Y + y, this.options.Format);
+                this.loader.Graphics.DrawString(text,
+                                                this.options.Font,
+                                                this.options.Brushes[brushIndex],
+                                                TextRenderer.foreOffset.X + x,
+                                                TextRenderer.foreOffset.Y + y,
+                                                this.options.Format);
 
             return this.loader.Graphics.MeasureString(text, this.options.Font, PointF.Empty, this.options.Format);
         }
@@ -299,7 +326,9 @@ namespace Nagisa.Graphics
         /// <summary>
         /// このオブジェクトによって使用されているアンマネージリソースを解放し、オプションでマネージリソースも解放します。
         /// </summary>
-        /// <param name="disposing">マネージリソースとアンマネージリソースの両方を解放する場合は true。アンマネージリソースだけを解放する場合は false。</param>
+        /// <param name="disposing">
+        /// マネージリソースとアンマネージリソースの両方を解放する場合は true。アンマネージリソースだけを解放する場合は false。
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
