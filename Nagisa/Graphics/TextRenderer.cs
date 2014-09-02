@@ -41,7 +41,7 @@ namespace Nagisa.Graphics
         private TextRendererOptions options;
 
         private int brushIndex = 0;
-        private bool disposed = false;
+        private bool isDisposed = false;
         #endregion
 
         #region -- Public Properties --
@@ -331,7 +331,7 @@ namespace Nagisa.Graphics
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this.isDisposed)
             {
                 if (disposing)
                 {
@@ -341,7 +341,7 @@ namespace Nagisa.Graphics
 
                 this.loader = null;
 
-                this.disposed = true;
+                this.isDisposed = true;
             }
         }
         #endregion
