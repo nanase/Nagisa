@@ -31,7 +31,7 @@ namespace Nagisa.Graphics
     /// <summary>
     /// ビットマップに文字列を描画するための機能を提供します。
     /// </summary>
-    public class TextRenderer : IDisposable
+    public class TextRenderer : IDisposer
     {
         #region -- Private Fields --
         private static readonly PointF foreOffset;
@@ -67,6 +67,14 @@ namespace Nagisa.Graphics
         /// 描画に用いるテキストオプションを取得します。
         /// </summary>
         public TextRendererOptions Options { get { return this.options; } }
+
+        /// <summary>
+        /// オブジェクトが破棄されたかを表す真偽値を取得します。
+        /// </summary>
+        public bool IsDisposed
+        {
+            get { return this.isDisposed; }
+        }
         #endregion
 
         #region -- Constructors --
