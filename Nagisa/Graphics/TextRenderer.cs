@@ -175,6 +175,9 @@ namespace Nagisa.Graphics
         /// <param name="y">描画される原点の Y 座標。</param>
         public void DrawString(string text, int brushIndex, float x, float y)
         {
+            if (this.isDisposed)
+                throw new ObjectDisposedException(this.GetType().FullName);
+
             this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias :
                                                                                    TextRenderingHint.SingleBitPerPixel;
 
@@ -278,6 +281,9 @@ namespace Nagisa.Graphics
         /// <returns>描画された矩形領域のサイズを返します。</returns>
         public SizeF DrawChars(string text, int brushIndex, float x, float y)
         {
+            if (this.isDisposed)
+                throw new ObjectDisposedException(this.GetType().FullName);
+
             this.loader.Graphics.TextRenderingHint = (this.options.Antialiasing) ? TextRenderingHint.AntiAlias :
                                                                                    TextRenderingHint.SingleBitPerPixel;
 
@@ -308,6 +314,9 @@ namespace Nagisa.Graphics
         /// </summary>
         public void Clear()
         {
+            if (this.isDisposed)
+                throw new ObjectDisposedException(this.GetType().FullName);
+
             this.loader.Graphics.Clear(Color.Transparent);
         }
 
@@ -316,6 +325,9 @@ namespace Nagisa.Graphics
         /// </summary>
         public void Flush()
         {
+            if (this.isDisposed)
+                throw new ObjectDisposedException(this.GetType().FullName);
+
             this.loader.Graphics.Flush();
             this.loader.Flush();
         }
