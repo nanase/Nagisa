@@ -71,16 +71,6 @@ namespace Nagisa.Graphics
             {
                 return this.brushes;
             }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("value");
-
-                if (value.Length == 0)
-                    throw new ArgumentException("少なくとも 1 つのブラシを指定する必要があります。");
-
-                this.brushes = value;
-            }
         }
 
         /// <summary>
