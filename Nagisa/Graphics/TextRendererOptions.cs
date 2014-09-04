@@ -23,6 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Nagisa.Graphics
@@ -34,7 +35,7 @@ namespace Nagisa.Graphics
     {
         #region -- Private Fields --
         private float lineHeight;
-        private Brush[] brushes;
+        private IList<Brush> brushes;
         private Font font;
         private int shadowIndex = 0;
         private StringFormat format;
@@ -63,9 +64,9 @@ namespace Nagisa.Graphics
         }
 
         /// <summary>
-        /// 描画時に文字に塗りつぶされるブラシオブジェクトの配列を取得または設定します。
+        /// 描画時に文字に塗りつぶされるブラシオブジェクトのリストを取得します。
         /// </summary>
-        public Brush[] Brushes
+        public IList<Brush> Brushes
         {
             get
             {
@@ -154,7 +155,7 @@ namespace Nagisa.Graphics
 
             this.font = font;
             this.LineHeight = lineHeight;
-            this.brushes = new Brush[0];
+            this.brushes = new List<Brush> { System.Drawing.Brushes.White };
             this.format = new StringFormat(StringFormat.GenericTypographic)
             {
                 FormatFlags = StringFormatFlags.NoWrap
@@ -185,7 +186,7 @@ namespace Nagisa.Graphics
 
             this.font = new Font(fontFamily, fontSize, style, GraphicsUnit.Pixel);
             this.LineHeight = lineHeight;
-            this.brushes = new Brush[0];
+            this.brushes = new List<Brush> { System.Drawing.Brushes.White };
             this.format = new StringFormat(StringFormat.GenericTypographic)
             {
                 FormatFlags = StringFormatFlags.NoWrap

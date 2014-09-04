@@ -184,8 +184,8 @@ namespace Nagisa.Graphics
             int i = 0;
             bool shadow = (this.options.DrawShadow &&
                            this.options.ShadowIndex > 0 &&
-                           this.options.ShadowIndex < this.options.Brushes.Length);
-            bool fore = (brushIndex >= 0 && brushIndex < this.options.Brushes.Length);
+                           this.options.ShadowIndex < this.options.Brushes.Count);
+            bool fore = (brushIndex >= 0 && brushIndex < this.options.Brushes.Count);
 
             foreach (var line in text.Split('\n'))
             {
@@ -289,7 +289,7 @@ namespace Nagisa.Graphics
 
             if (this.options.DrawShadow &&
                 this.options.ShadowIndex > 0 &&
-                this.options.ShadowIndex < this.options.Brushes.Length)
+                this.options.ShadowIndex < this.options.Brushes.Count)
                 this.loader.Graphics.DrawString(text,
                                                 this.options.Font,
                                                 this.options.Brushes[this.options.ShadowIndex],
@@ -297,7 +297,7 @@ namespace Nagisa.Graphics
                                                 TextRenderer.shadowOffset.Y + y,
                                                 this.options.Format);
 
-            if (brushIndex >= 0 && brushIndex < this.options.Brushes.Length)
+            if (brushIndex >= 0 && brushIndex < this.options.Brushes.Count)
                 this.loader.Graphics.DrawString(text,
                                                 this.options.Font,
                                                 this.options.Brushes[brushIndex],
