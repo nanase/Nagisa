@@ -174,23 +174,8 @@ namespace Nagisa.Graphics
             int fontSize,
             int lineHeight,
             FontStyle style = FontStyle.Regular)
+            : this(new Font(fontFamily, fontSize, style, GraphicsUnit.Pixel), lineHeight)
         {
-            if (fontFamily == null)
-                throw new ArgumentNullException("fontFamily");
-
-            if (fontSize < 0)
-                throw new ArgumentOutOfRangeException("fontSize");
-
-            if (lineHeight < 0)
-                throw new ArgumentOutOfRangeException("lineHeight");
-
-            this.font = new Font(fontFamily, fontSize, style, GraphicsUnit.Pixel);
-            this.LineHeight = lineHeight;
-            this.brushes = new List<Brush> { System.Drawing.Brushes.White };
-            this.format = new StringFormat(StringFormat.GenericTypographic)
-            {
-                FormatFlags = StringFormatFlags.NoWrap
-            };
         }
         #endregion
     }
