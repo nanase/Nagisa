@@ -35,7 +35,7 @@ namespace Nagisa.Graphics
     {
         #region -- Private Fields --
         private float lineHeight;
-        private IList<Brush> brushes;
+        private readonly IList<Brush> brushes;
         private Font font;
         private int shadowIndex = 0;
         private StringFormat format;
