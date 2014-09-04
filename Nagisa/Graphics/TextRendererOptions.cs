@@ -202,25 +202,5 @@ namespace Nagisa.Graphics
             };
         }
         #endregion
-
-        #region -- Public Methods --
-        /// <summary>
-        /// Color 構造体の配列を使って Brushes プロパティを設定します。
-        /// </summary>
-        /// <param name="colors"></param>
-        public void SetSolidBrushes(params Color[] colors)
-        {
-            if (colors == null)
-                throw new ArgumentNullException("colors");
-
-            if (colors.Length == 0)
-                throw new ArgumentException("少なくとも 1 つの色を指定する必要があります。");
-
-            this.brushes = new Brush[colors.Length];
-
-            for (int i = 0, j = colors.Length; i < j; i++)
-                this.brushes[i] = new SolidBrush(colors[i]);
-        }
-        #endregion
     }
 }
