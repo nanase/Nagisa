@@ -48,6 +48,8 @@ namespace Nagisa.Graphics
         /// <param name="x">取得する X 座標。</param>
         /// <param name="y">取得する Y 座標。</param>
         /// <returns>座標が指し示す Color 構造体。</returns>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
+        /// <exception cref="ArgumentOutOfRangeException">X または Y 座標が画像データの範囲外です。</exception>
         public unsafe Color this[int x, int y]
         {
             get
@@ -82,6 +84,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// 生データを格納する BitmapData オブジェクトを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public BitmapData BitmapData
         {
             get
@@ -96,6 +99,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップの元となった Bitmap オブジェクトを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public Bitmap BaseBitmap
         {
             get
@@ -110,6 +114,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップデータの先頭ポインタを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public IntPtr Scan0
         {
             get
@@ -136,6 +141,7 @@ namespace Nagisa.Graphics
         /// </summary>
         /// <param name="bitmap">元となるビットマップ。</param>
         /// <param name="flags">メモリロックフラグ。</param>
+        /// <exception cref="ArgumentNullException">bitmap に null が指定されました。</exception>
         public BitmapController(Bitmap bitmap, ImageLockMode flags)
         {
             if (bitmap == null)
