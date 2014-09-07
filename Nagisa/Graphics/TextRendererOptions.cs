@@ -145,6 +145,8 @@ namespace Nagisa.Graphics
         /// </summary>
         /// <param name="font">描画に用いるフォント。</param>
         /// <param name="lineHeight">行の高さ。</param>
+        /// <exception cref="ArgumentNullException">font に null が指定されました。</exception>
+        /// <exception cref="ArgumentOutOfRangeException">lineHeight に負値が指定されました。</exception>
         public TextRendererOptions(Font font, int lineHeight)
         {
             if (font == null)
