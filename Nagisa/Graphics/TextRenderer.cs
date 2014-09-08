@@ -357,9 +357,13 @@ namespace Nagisa.Graphics
                 {
                     if (this.loader != null)
                         this.loader.Dispose();
+
+                    if (this.options != null)
+                        this.options.Dispose();
                 }
 
                 this.loader = null;
+                this.options = null;
 
                 this.isDisposed = true;
             }
