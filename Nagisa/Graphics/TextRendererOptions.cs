@@ -31,7 +31,7 @@ namespace Nagisa.Graphics
     /// <summary>
     /// テキストの描画に用いられるオプションを格納します。
     /// </summary>
-    public class TextRendererOptions
+    public class TextRendererOptions : IDisposer
     {
         #region -- Private Fields --
         private float lineHeight;
@@ -39,6 +39,8 @@ namespace Nagisa.Graphics
         private Font font;
         private int shadowIndex = 0;
         private StringFormat format;
+
+        private bool isDisposed = false;
         #endregion
 
         #region -- Public Properties --
@@ -137,6 +139,14 @@ namespace Nagisa.Graphics
                 this.format = value;
             }
         }
+
+        /// <summary>
+        /// オブジェクトが破棄されたかを表す真偽値を取得します。
+        /// </summary>
+        public bool IsDisposed
+        {
+            get { return this.isDisposed; }
+        }
         #endregion
 
         #region -- Constructors --
@@ -178,6 +188,45 @@ namespace Nagisa.Graphics
             FontStyle style = FontStyle.Regular)
             : this(new Font(fontFamily, fontSize, style, GraphicsUnit.Pixel), lineHeight)
         {
+        }
+        #endregion
+
+        #region -- Public Methods --
+        /// <summary>
+        /// このオブジェクトで使用されているリソースを解放します。
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        #region -- Protected Methods --
+        /// <summary>
+        /// このオブジェクトによって使用されているアンマネージリソースを解放し、オプションでマネージリソースも解放します。
+        /// </summary>
+        /// <param name="disposing">
+        /// マネージリソースとアンマネージリソースの両方を解放する場合は true。アンマネージリソースだけを解放する場合は false。
+        /// </param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.isDisposed)
+            {
+                if (disposing)
+                {
+                    if (this.font != null)
+                        this.font.Dispose();
+
+                    if (this.format != null)
+                        this.format.Dispose();
+                }
+
+                this.font = null;
+                this.format = null;
+
+                this.isDisposed = true;
+            }
         }
         #endregion
     }
