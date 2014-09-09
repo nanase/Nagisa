@@ -229,5 +229,12 @@ namespace Nagisa.Graphics
             }
         }
         #endregion
+
+        #region -- Destructors --
+        ~TextRendererOptions()
+        {
+            this.Dispose(false);
+        }
+        #endregion
     }
 }
