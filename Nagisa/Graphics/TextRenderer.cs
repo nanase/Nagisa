@@ -48,6 +48,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// 文字列描画時のブラシのインデクスを取得または設定します。
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">不正なインデクス値が指定されました。</exception>
         public int BrushIndex
         {
             get
@@ -98,6 +99,7 @@ namespace Nagisa.Graphics
         /// </summary>
         /// <param name="options">使用されるテキストオプション。</param>
         /// <param name="bitmapLoader">描画先のビットマップ。</param>
+        /// <exception cref="ArgumentNullException">何れかの引数が null です。</exception>
         public TextRenderer(TextRendererOptions options, BitmapLoader bitmapLoader)
         {
             if (options == null)
@@ -173,6 +175,7 @@ namespace Nagisa.Graphics
         /// <param name="brushIndex">ブラシのインデクス。</param>
         /// <param name="x">描画される原点の X 座標。</param>
         /// <param name="y">描画される原点の Y 座標。</param>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public void DrawString(string text, int brushIndex, float x, float y)
         {
             if (this.isDisposed)
@@ -279,6 +282,7 @@ namespace Nagisa.Graphics
         /// <param name="x">描画される原点の X 座標。</param>
         /// <param name="y">描画される原点の Y 座標。</param>
         /// <returns>描画された矩形領域のサイズを返します。</returns>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public SizeF DrawChars(string text, int brushIndex, float x, float y)
         {
             if (this.isDisposed)
@@ -312,6 +316,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップをクリアします。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public void Clear()
         {
             if (this.isDisposed)
@@ -323,6 +328,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// ビットマップへの変更を確定します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public void Flush()
         {
             if (this.isDisposed)
