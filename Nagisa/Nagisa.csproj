@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Graphics\BitmapController.cs" />
     <Compile Include="Graphics\BitmapLoader.cs" />
+    <Compile Include="Graphics\FontLoader.cs" />
     <Compile Include="Graphics\TextRenderer.cs" />
     <Compile Include="Graphics\TextRendererOptions.cs" />
     <Compile Include="IDisposer.cs" />
