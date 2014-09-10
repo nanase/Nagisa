@@ -31,13 +31,13 @@ namespace Nagisa.Graphics
     /// <summary>
     /// ファイルからフォントをロードするためのローダです。
     /// </summary>
-    public class FontLoader : IDisposable
+    public class FontLoader : IDisposer
     {
         #region -- Private Fields --
         private PrivateFontCollection fontCollection;
         private FontFamily family;
 
-        private bool disposed = false;
+        private bool isDisposed = false;
         #endregion
 
         #region -- Public Properties --
@@ -45,6 +45,14 @@ namespace Nagisa.Graphics
         /// フォントから読み込みに成功したフォントファミリを取得します。
         /// </summary>
         public FontFamily Family { get { return this.family; } }
+
+        /// <summary>
+        /// オブジェクトが破棄されたかを表す真偽値を取得します。
+        /// </summary>
+        public bool IsDisposed
+        {
+            get { return this.isDisposed; }
+        }
         #endregion
 
         #region -- Constructors --
@@ -87,7 +95,7 @@ namespace Nagisa.Graphics
         /// </param>
         protected void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this.isDisposed)
             {
                 if (disposing)
                 {
@@ -101,7 +109,7 @@ namespace Nagisa.Graphics
                 this.family = null;
                 this.fontCollection = null;
 
-                this.disposed = true;
+                this.isDisposed = true;
             }
         }
         #endregion
