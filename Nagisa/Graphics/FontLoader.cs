@@ -23,6 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 
@@ -35,7 +36,7 @@ namespace Nagisa.Graphics
     {
         #region -- Private Fields --
         private PrivateFontCollection fontCollection;
-        private FontFamily family;
+        private IReadOnlyList<FontFamily> families;
 
         private bool isDisposed = false;
         #endregion
@@ -44,7 +45,7 @@ namespace Nagisa.Graphics
         /// <summary>
         /// フォントから読み込みに成功したフォントファミリを取得します。
         /// </summary>
-        public FontFamily Family { get { return this.family; } }
+        public IReadOnlyList<FontFamily> Families { get { return this.families; } }
 
         /// <summary>
         /// オブジェクトが破棄されたかを表す真偽値を取得します。
@@ -71,7 +72,8 @@ namespace Nagisa.Graphics
             if (this.fontCollection.Families.Length == 0)
                 throw new Exception("指定されたファイルからフォントが見つかりません。");
 
-            this.family = this.fontCollection.Families[0];
+            this.families = Array.AsReadOnly(this.fontCollection.Families);
+
         }
         #endregion
 
@@ -99,14 +101,15 @@ namespace Nagisa.Graphics
             {
                 if (disposing)
                 {
-                    if (this.family != null)
-                        this.family.Dispose();
+                    if (this.families != null)
+                        foreach (var item in this.families)
+                            item.Dispose();
 
                     if (this.fontCollection != null)
                         this.fontCollection.Dispose();
                 }
 
-                this.family = null;
+                this.families = null;
                 this.fontCollection = null;
 
                 this.isDisposed = true;
