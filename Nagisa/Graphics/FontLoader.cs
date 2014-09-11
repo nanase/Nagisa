@@ -43,7 +43,7 @@ namespace Nagisa.Graphics
 
         #region -- Public Properties --
         /// <summary>
-        /// フォントから読み込みに成功したフォントファミリを取得します。
+        /// フォントから読み込みに成功したフォントファミリのリストを取得します。
         /// </summary>
         public IReadOnlyList<FontFamily> Families { get { return this.families; } }
 
