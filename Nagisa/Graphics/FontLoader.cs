@@ -69,8 +69,6 @@ namespace Nagisa.Graphics
             this.fontCollection = new PrivateFontCollection();
             this.fontCollection.AddFontFile(filename);
 
-            if (this.fontCollection.Families.Length == 0)
-                throw new Exception("指定されたファイルからフォントが見つかりません。");
 
             this.families = Array.AsReadOnly(this.fontCollection.Families);
 
