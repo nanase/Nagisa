@@ -26,6 +26,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Nagisa.Graphics
 {
@@ -68,10 +70,46 @@ namespace Nagisa.Graphics
 
             this.fontCollection = new PrivateFontCollection();
             this.fontCollection.AddFontFile(filename);
+            this.families = Array.AsReadOnly(this.fontCollection.Families);
+        }
 
+        /// <summary>
+        /// 読み込むストリームを指定して新しい FontLoader クラスのインスタンスを初期化します。
+        /// </summary>
+        /// <param name="stream">読み取られる Stream。</param>
+        /// <param name="size">読み取られるバイト数。</param>
+        public FontLoader(Stream stream, int size)
+        {
+            if (stream == null)
+                throw new ArgumentNullException("stream");
 
+            if (size < 0)
+                throw new ArgumentOutOfRangeException("size");
+
+            if (!stream.CanRead)
+                throw new ArgumentException();
+
+            IntPtr buffer = Marshal.AllocHGlobal(size);
+            const int ReadSegmentSize = 1024 * 16;
+            int readSize;
+            int readTotal = 0;
+            byte[] readBuffer = new byte[ReadSegmentSize];
+
+            do
+            {
+                readSize = stream.Read(readBuffer, 0, ReadSegmentSize);
+                Marshal.Copy(readBuffer, 0, buffer + readTotal, readSize);
+                readTotal += readSize;
+            } while (readSize > 0);
+
+            if (readTotal != size)
+                throw new ArgumentException();
+
+            this.fontCollection = new PrivateFontCollection();
+            this.fontCollection.AddMemoryFont(buffer, size);
             this.families = Array.AsReadOnly(this.fontCollection.Families);
 
+            Marshal.FreeHGlobal(buffer);
         }
         #endregion
 
