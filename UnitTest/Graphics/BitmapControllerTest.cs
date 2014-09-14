@@ -50,13 +50,63 @@ namespace UnitTest.Graphics
         [TestMethod]
         public void IndexerTest()
         {
+            Color expected = Color.FromArgb(0);
+
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
             {
-                Assert.AreEqual(controller[0, 0], Color.Transparent);
-                Assert.AreEqual(controller[31, 0], Color.Transparent);
-                Assert.AreEqual(controller[0, 31], Color.Transparent);
-                Assert.AreEqual(controller[31, 31], Color.Transparent);
+                Assert.AreEqual(controller[0, 0], expected);
+                Assert.AreEqual(controller[31, 0], expected);
+                Assert.AreEqual(controller[0, 31], expected);
+                Assert.AreEqual(controller[31, 31], expected);
             }
-        }        
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption1()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[-1, 0], Color.Transparent);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption2()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[0, -1], Color.Transparent);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption3()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[32, 0], Color.Transparent);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption4()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[0, 32], Color.Transparent);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption5()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[-1, -1], Color.Transparent);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexerTestExeption6()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+                Assert.AreEqual(controller[32, 32], Color.Transparent);
+        }
     }
 }
