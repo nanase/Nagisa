@@ -23,13 +23,40 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Nagisa.Graphics;
 
 namespace UnitTest.Graphics
 {
     [TestClass]
     public class BitmapControllerTest
     {
-        // stub!
+        private Bitmap smallBitmap;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            this.smallBitmap = new Bitmap(32, 32);
+        }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            this.smallBitmap.Dispose();
+        }
+
+        [TestMethod]
+        public void IndexerTest()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
+            {
+                Assert.AreEqual(controller[0, 0], Color.Transparent);
+                Assert.AreEqual(controller[31, 0], Color.Transparent);
+                Assert.AreEqual(controller[0, 31], Color.Transparent);
+                Assert.AreEqual(controller[31, 31], Color.Transparent);
+            }
+        }        
     }
 }
