@@ -110,5 +110,16 @@ namespace UnitTest.Graphics
                 Assert.AreEqual(controller[32, 32], Color.Transparent);
         }
         #endregion
+
+        #region -- public BitmapData BitmapData --
+        [TestMethod]
+        public void BitmapDataTest()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadOnly))
+            {
+                Assert.AreEqual(this.smallBitmap, controller.BaseBitmap);
+            }
+        }
+        #endregion
     }
 }
