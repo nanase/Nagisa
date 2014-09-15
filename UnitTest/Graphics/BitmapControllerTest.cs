@@ -47,6 +47,7 @@ namespace UnitTest.Graphics
             this.smallBitmap.Dispose();
         }
 
+        #region -- Indexer --
         [TestMethod]
         public void IndexerTest()
         {
@@ -108,5 +109,6 @@ namespace UnitTest.Graphics
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[32, 32], Color.Transparent);
         }
+        #endregion
     }
 }
