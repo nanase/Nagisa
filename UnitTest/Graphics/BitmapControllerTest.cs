@@ -47,9 +47,9 @@ namespace UnitTest.Graphics
             this.smallBitmap.Dispose();
         }
 
-        #region -- Indexer --
+        #region -- Indexer Get --
         [TestMethod]
-        public void IndexerTest()
+        public void IndexerGetTest()
         {
             Color expected = Color.FromArgb(0);
 
@@ -64,7 +64,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption1()
+        public void IndexerGetTestExeption1()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[-1, 0], Color.Transparent);
@@ -72,7 +72,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption2()
+        public void IndexerGetTestExeption2()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[0, -1], Color.Transparent);
@@ -80,7 +80,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption3()
+        public void IndexerGetTestExeption3()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[32, 0], Color.Transparent);
@@ -88,7 +88,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption4()
+        public void IndexerGetTestExeption4()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[0, 32], Color.Transparent);
@@ -96,7 +96,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption5()
+        public void IndexerGetTestExeption5()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[-1, -1], Color.Transparent);
@@ -104,7 +104,7 @@ namespace UnitTest.Graphics
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerTestExeption6()
+        public void IndexerGetTestExeption6()
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[32, 32], Color.Transparent);
