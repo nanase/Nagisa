@@ -93,22 +93,6 @@ namespace UnitTest.Graphics
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
                 Assert.AreEqual(controller[0, 32], Color.Transparent);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerGetTestExeption5()
-        {
-            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
-                Assert.AreEqual(controller[-1, -1], Color.Transparent);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexerGetTestExeption6()
-        {
-            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadWrite))
-                Assert.AreEqual(controller[32, 32], Color.Transparent);
-        }
         #endregion
 
         #region -- public BitmapData BitmapData --
