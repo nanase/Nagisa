@@ -157,6 +157,20 @@ namespace UnitTest.Graphics
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadOnly))
             {
+                Assert.IsNotNull(controller.BitmapData);
+                Assert.AreEqual(this.smallBitmap.Width, controller.BitmapData.Width);
+                Assert.AreEqual(this.smallBitmap.Height, controller.BitmapData.Height);
+                Assert.AreEqual(this.smallBitmap.PixelFormat, controller.BitmapData.PixelFormat);
+            }
+        }
+        #endregion
+
+        #region -- public Bitmap BaseBitmap --
+        [TestMethod]
+        public void BaseBitmapTest()
+        {
+            using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadOnly))
+            {
                 Assert.AreEqual(this.smallBitmap, controller.BaseBitmap);
             }
         }
