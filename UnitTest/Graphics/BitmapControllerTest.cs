@@ -176,6 +176,28 @@ namespace UnitTest.Graphics
         }
         #endregion
 
+        #region -- public bool IsDisposed --
+        [TestMethod]
+        public void IsDisposedTest()
+        {
+            BitmapController controller = null;
+            try
+            {
+                controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadOnly);
+                Assert.IsFalse(controller.IsDisposed);
+            }
+            finally
+            {
+                if (controller != null)
+                {
+                    controller.Dispose();
+                    Assert.IsTrue(controller.IsDisposed);
+                    controller = null;
+                }
+            }
+        }
+        #endregion
+
         #region -- Constructor --
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
