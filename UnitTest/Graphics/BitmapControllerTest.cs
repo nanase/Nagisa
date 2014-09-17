@@ -121,5 +121,14 @@ namespace UnitTest.Graphics
             }
         }
         #endregion
+
+        #region -- Constructor --
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ConstructorTest()
+        {
+            using (var controller = new BitmapController(null, ImageLockMode.ReadOnly)) { }
+        }
+        #endregion
     }
 }
