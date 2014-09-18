@@ -28,5 +28,25 @@ namespace UnitTest.Graphics
                 Assert.AreEqual("NanoDigi", font.Families[0].Name);
             }
         }
+
+        [TestMethod]
+        public void IsDisposedTest()
+        {
+            FontLoader loader = null;
+            try
+            {
+                loader = new FontLoader("./resource/nanodigi.ttf");
+                Assert.IsFalse(loader.IsDisposed);
+            }
+            finally
+            {
+                if (loader != null)
+                {
+                    loader.Dispose();
+                    Assert.IsTrue(loader.IsDisposed);
+                    loader = null;
+                }
+            }
+        }
     }
 }
