@@ -47,7 +47,17 @@ namespace Nagisa.Graphics
         /// <summary>
         /// フォントから読み込みに成功したフォントファミリのリストを取得します。
         /// </summary>
-        public IReadOnlyList<FontFamily> Families { get { return this.families; } }
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
+        public IReadOnlyList<FontFamily> Families
+        {
+            get
+            {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
+                return this.families;
+            }
+        }
 
         /// <summary>
         /// オブジェクトが破棄されたかを表す真偽値を取得します。
