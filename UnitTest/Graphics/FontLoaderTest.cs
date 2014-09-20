@@ -8,13 +8,16 @@ namespace UnitTest.Graphics
     [TestClass]
     public class FontLoaderTest
     {
+        private const string NanoDigiPath = "./resource/nanodigi.ttf";
+        private const string NanoDigiFontName = "NanoDigi";
+
         [TestMethod]
         public void ConstructorTest1()
         {
-            using (FontLoader font = new FontLoader("./resource/nanodigi.ttf"))
+            using (FontLoader font = new FontLoader(NanoDigiPath))
             {
                 Assert.AreEqual(1, font.Families.Count);
-                Assert.AreEqual("NanoDigi", font.Families[0].Name);
+                Assert.AreEqual(NanoDigiFontName, font.Families[0].Name);
             }
         }
 
@@ -30,11 +33,11 @@ namespace UnitTest.Graphics
         [TestMethod]
         public void ConstructorTest2()
         {
-            using (Stream stream = new FileStream("./resource/nanodigi.ttf", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream stream = new FileStream(NanoDigiPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (FontLoader font = new FontLoader(stream, (int)stream.Length))
             {
                 Assert.AreEqual(1, font.Families.Count);
-                Assert.AreEqual("NanoDigi", font.Families[0].Name);
+                Assert.AreEqual(NanoDigiFontName, font.Families[0].Name);
             }
         }
 
@@ -42,7 +45,7 @@ namespace UnitTest.Graphics
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorException1Test2()
         {
-            using (Stream stream = new FileStream("./resource/nanodigi.ttf", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream stream = new FileStream(NanoDigiPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (FontLoader font = new FontLoader(null, (int)stream.Length)) { }
 
             Assert.Fail();
@@ -52,7 +55,7 @@ namespace UnitTest.Graphics
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ConstructorException2Test2()
         {
-            using (Stream stream = new FileStream("./resource/nanodigi.ttf", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream stream = new FileStream(NanoDigiPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (FontLoader font = new FontLoader(stream, -1)) { }
 
             Assert.Fail();
@@ -64,7 +67,7 @@ namespace UnitTest.Graphics
             FontLoader loader = null;
             try
             {
-                loader = new FontLoader("./resource/nanodigi.ttf");
+                loader = new FontLoader(NanoDigiPath);
                 Assert.IsFalse(loader.IsDisposed);
             }
             finally
@@ -85,7 +88,7 @@ namespace UnitTest.Graphics
             FontLoader loader = null;
             try
             {
-                loader = new FontLoader("./resource/nanodigi.ttf");
+                loader = new FontLoader(NanoDigiPath);
             }
             finally
             {
