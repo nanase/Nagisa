@@ -133,6 +133,15 @@ namespace Nagisa.Graphics
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// このオブジェクトを表す文字列を取得します。
+        /// </summary>
+        /// <returns>オブジェクトを表す文字列。</returns>
+        public override string ToString()
+        {
+            return "Families = " + this.families.Count;
+        }
         #endregion
 
         #region -- Protected Methods --
