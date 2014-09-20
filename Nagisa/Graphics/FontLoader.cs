@@ -107,10 +107,11 @@ namespace Nagisa.Graphics
 
             do
             {
-                readSize = stream.Read(readBuffer, 0, ReadSegmentSize);
+                // fixed #1 buffer overrun 
+                readSize = stream.Read(readBuffer, 0, Math.Min(ReadSegmentSize, size - readTotal));
                 Marshal.Copy(readBuffer, 0, buffer + readTotal, readSize);
                 readTotal += readSize;
-            } while (readSize > 0);
+            } while (readSize > 0 && size - readTotal > 0);
 
             if (readTotal != size)
                 throw new ArgumentException();
