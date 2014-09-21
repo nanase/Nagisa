@@ -220,10 +220,15 @@ namespace Nagisa.Graphics
 
                     if (this.format != null)
                         this.format.Dispose();
+
+                    if (this.brushes != null)
+                        foreach (var brush in this.brushes)
+                            brush.Dispose();
                 }
 
                 this.font = null;
                 this.format = null;
+                this.brushes = null;
 
                 this.isDisposed = true;
             }
