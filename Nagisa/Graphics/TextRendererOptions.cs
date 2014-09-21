@@ -167,7 +167,7 @@ namespace Nagisa.Graphics
 
             this.font = font;
             this.LineHeight = lineHeight;
-            this.brushes = new List<Brush> { System.Drawing.Brushes.White };
+            this.brushes = new List<Brush> { new SolidBrush(System.Drawing.Color.White) };
             this.format = new StringFormat(StringFormat.GenericTypographic)
             {
                 FormatFlags = StringFormatFlags.NoWrap
