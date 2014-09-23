@@ -171,6 +171,7 @@ namespace UnitTest.Graphics
         {
             using (BitmapController controller = new BitmapController(this.smallBitmap, ImageLockMode.ReadOnly))
             {
+                Assert.IsNotNull(controller.BaseBitmap);
                 Assert.AreEqual(this.smallBitmap, controller.BaseBitmap);
             }
         }
