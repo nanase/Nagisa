@@ -25,5 +25,33 @@ namespace UnitTest.Graphics
             this.smallBitmap.Dispose();
             this.writtenBitmap.Dispose();
         }
+
+        [TestMethod]
+        public void BaseBitmapTest()
+        {
+            using (BitmapLoader loader = new BitmapLoader(this.smallBitmap))
+            {
+                Assert.IsNotNull(loader.BaseBitmap);
+                Assert.AreEqual(this.smallBitmap, loader.BaseBitmap);
+            }
+        }
+
+        [TestMethod]
+        public void GraphicsTest()
+        {
+            using (BitmapLoader loader = new BitmapLoader(this.smallBitmap))
+            {
+                Assert.IsNotNull(loader.Graphics);
+            }
+        }
+
+        [TestMethod]
+        public void Scan0Test()
+        {
+            using (BitmapLoader loader = new BitmapLoader(this.smallBitmap))
+            {
+                Assert.AreNotEqual(IntPtr.Zero, loader.Scan0);
+            }
+        }
     }
 }
