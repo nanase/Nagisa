@@ -16,6 +16,7 @@ namespace UnitTest.Graphics
         {
             using (FontLoader font = new FontLoader(NanoDigiPath))
             {
+                Assert.IsNotNull(font.Families);
                 Assert.AreEqual(1, font.Families.Count);
                 Assert.AreEqual(NanoDigiFontName, font.Families[0].Name);
             }
@@ -36,6 +37,7 @@ namespace UnitTest.Graphics
             using (Stream stream = new FileStream(NanoDigiPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (FontLoader font = new FontLoader(stream, (int)stream.Length))
             {
+                Assert.IsNotNull(font.Families);
                 Assert.AreEqual(1, font.Families.Count);
                 Assert.AreEqual(NanoDigiFontName, font.Families[0].Name);
             }
