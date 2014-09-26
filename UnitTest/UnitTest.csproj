@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Graphics\BitmapControllerTest.cs" />
     <Compile Include="Graphics\BitmapLoaderTest.cs" />
+    <Compile Include="Graphics\TextRendererOptionsTest.cs" />
     <Compile Include="Graphics\FontLoaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
