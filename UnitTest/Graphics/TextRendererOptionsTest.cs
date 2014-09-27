@@ -24,6 +24,19 @@ namespace UnitTest.Graphics
             }
         }
 
+        [TestMethod]
+        public void LineHeightSetTest()
+        {
+            const int LineHeight = 10;
+            const int LineHeightModified = 12;
 
+            using (FontLoader fontLoader = new FontLoader(NanoDigiPath))
+            using (Font font = new Font(fontLoader.Families[0], 10.0f))
+            using (TextRendererOptions options = new TextRendererOptions(font, LineHeight))
+            {
+                options.LineHeight = LineHeightModified;
+                Assert.AreEqual(LineHeightModified, (int)options.LineHeight);
+            }
+        }
     }
 }
