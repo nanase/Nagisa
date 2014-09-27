@@ -12,7 +12,7 @@ namespace UnitTest.Graphics
         private const string NanoDigiPath = "./resource/nanodigi.ttf";
 
         [TestMethod]
-        public void LineHeightTest()
+        public void LineHeightGetTest()
         {
             const int LineHeight = 10;
 
@@ -23,5 +23,7 @@ namespace UnitTest.Graphics
                 Assert.AreEqual(LineHeight, (int)options.LineHeight);
             }
         }
+
+
     }
 }
