@@ -82,5 +82,18 @@ namespace UnitTest.Graphics
                 Assert.AreEqual(font, options.Font);
             }
         }
+
+        [TestMethod]
+        public void FormatGetTest()
+        {
+            const int LineHeight = 10;
+
+            using (FontLoader fontLoader = new FontLoader(NanoDigiPath))
+            using (Font font = new Font(fontLoader.Families[0], 10.0f))
+            using (TextRendererOptions options = new TextRendererOptions(font, LineHeight))
+            {
+                Assert.IsNotNull(options.Format);
+            }
+        }
     }
 }
