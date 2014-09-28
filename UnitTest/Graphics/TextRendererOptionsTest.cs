@@ -52,5 +52,21 @@ namespace UnitTest.Graphics
                 Assert.AreEqual(1, options.Brushes.Count);
             }
         }
+
+        [TestMethod]
+        public void ShadowIndexTest()
+        {
+            const int LineHeight = 10;
+
+            using (FontLoader fontLoader = new FontLoader(NanoDigiPath))
+            using (Font font = new Font(fontLoader.Families[0], 10.0f))
+            using (TextRendererOptions options = new TextRendererOptions(font, LineHeight))
+            {
+                Assert.AreEqual(0, options.ShadowIndex);
+
+                options.ShadowIndex = 3;
+                Assert.AreEqual(3, options.ShadowIndex);
+            }
+        }
     }
 }
