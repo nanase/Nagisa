@@ -68,10 +68,14 @@ namespace Nagisa.Graphics
         /// <summary>
         /// 描画時に文字に塗りつぶされるブラシオブジェクトのリストを取得します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public IList<Brush> Brushes
         {
             get
             {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
                 return this.brushes;
             }
         }
@@ -107,14 +111,21 @@ namespace Nagisa.Graphics
         /// <summary>
         /// フォントを取得または設定します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public Font Font
         {
             get
             {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
                 return this.font;
             }
             set
             {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
                 if (value == null)
                     throw new ArgumentNullException("value");
 
@@ -125,14 +136,21 @@ namespace Nagisa.Graphics
         /// <summary>
         /// 文字列の描画時に用いられる StringFormat オブジェクトを取得または設定します。
         /// </summary>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public StringFormat Format
         {
             get
             {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
                 return this.format;
             }
             set
             {
+                if (this.isDisposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
                 if (value == null)
                     throw new ArgumentNullException("value");
 
