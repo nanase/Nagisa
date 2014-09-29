@@ -138,8 +138,12 @@ namespace Nagisa.Graphics
         /// このオブジェクトを表す文字列を取得します。
         /// </summary>
         /// <returns>オブジェクトを表す文字列。</returns>
+        /// <exception cref="ObjectDisposedException">オブジェクトが破棄された後に操作が実行されました。</exception>
         public override string ToString()
         {
+            if (this.isDisposed)
+                throw new ObjectDisposedException(this.GetType().FullName);
+
             return "Families = " + this.families.Count;
         }
         #endregion
