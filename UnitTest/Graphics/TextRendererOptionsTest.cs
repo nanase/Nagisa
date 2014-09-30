@@ -133,5 +133,34 @@ namespace UnitTest.Graphics
                 var format = options.Format;
             }
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FormatSetExceptionTest1()
+        {
+            const int LineHeight = 10;
+
+            using (FontLoader fontLoader = new FontLoader(NanoDigiPath))
+            using (Font font = new Font(fontLoader.Families[0], 10.0f))
+            using (TextRendererOptions options = new TextRendererOptions(font, LineHeight))
+                options.Format = null;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDisposedException))]
+        public void FormatGetExceptionTest2()
+        {
+            const int LineHeight = 10;
+            TextRendererOptions options = null;
+
+            using (FontLoader fontLoader = new FontLoader(NanoDigiPath))
+            using (Font font = new Font(fontLoader.Families[0], 10.0f))
+            using (options = new TextRendererOptions(font, LineHeight)) { }
+
+            if (options == null)
+                Assert.Fail();
+            else
+                options.Format = StringFormat.GenericTypographic;
+        }
     }
 }
